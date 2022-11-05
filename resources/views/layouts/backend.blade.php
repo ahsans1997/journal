@@ -39,6 +39,12 @@
                     @yield('department')
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
+                            <button type="submit" class="btn btn-danger"> Logout</button>
+                        </form>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
                             data-toggle="dropdown">
