@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+//Department Controller
+
+Route::resource('department', DepartmentController::class);
+
+
