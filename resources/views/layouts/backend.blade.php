@@ -5,6 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Victory Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('backend_asset') }}/vendors/mdi/css/materialdesignicons.min.css">
@@ -36,7 +37,7 @@
                     <span class="icon-menu"></span>
                 </button>
                 <ul class="navbar-nav">
-                    @yield('department')
+                    @yield('journal')
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
                     <li>
@@ -190,10 +191,9 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="{{ route('dashboard') }}">
                                 <i class="icon-rocket menu-icon"></i>
                                 <span class="menu-title">Dashboard</span>
-                                <span class="badge badge-success">New</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -203,26 +203,10 @@
                             </a>
                         </li>
                         <li class="nav-item d-none d-lg-block">
-                            <a class="nav-link" data-toggle="collapse" href="#sidebar-layouts" aria-expanded="false"
-                                aria-controls="sidebar-layouts">
+                            <a class="nav-link" href="{{ route('journal.index') }}">
                                 <i class="icon-layers menu-icon"></i>
-                                <span class="menu-title">Sidebar Layouts</span>
-                                <span class="badge badge-warning">5</span>
+                                <span class="menu-title">Journal & Research Paper</span>
                             </a>
-                            <div class="collapse" id="sidebar-layouts">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item"> <a class="nav-link"
-                                            href="pages/layout/compact-menu.html">Compact menu</a></li>
-                                    <li class="nav-item"> <a class="nav-link"
-                                            href="pages/layout/sidebar-collapsed.html">Icon menu</a></li>
-                                    <li class="nav-item"> <a class="nav-link"
-                                            href="pages/layout/sidebar-hidden.html">Sidebar Hidden</a></li>
-                                    <li class="nav-item"> <a class="nav-link"
-                                            href="pages/layout/sidebar-hidden-overlay.html">Sidebar Overlay</a></li>
-                                    <li class="nav-item"> <a class="nav-link"
-                                            href="pages/layout/sidebar-fixed.html">Sidebar Fixed</a></li>
-                                </ul>
-                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="collapse" href="#ui-advanced" aria-expanded="false"
