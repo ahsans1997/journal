@@ -21,17 +21,15 @@
     <link rel="stylesheet" href="{{ asset('backend_asset') }}/css/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('backend_asset') }}/images/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
 </head>
 
 <body>
     <div class="container-scroller">
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-            <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-                <a class="navbar-brand brand-logo" href="index.html"><img src="images/logo.svg" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg"
-                        alt="logo" /></a>
-            </div>
+            <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center"><h1>Ahsan</h1></div>
             <div class="navbar-menu-wrapper d-flex align-items-center">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="icon-menu"></span>
@@ -173,7 +171,7 @@
                 <!-- partial:partials/_sidebar.html -->
                 <nav class="sidebar sidebar-offcanvas" id="sidebar">
                     <ul class="nav">
-                        <li class="nav-item nav-profile">
+                        {{-- <li class="nav-item nav-profile">
                             <div class="nav-link">
                                 <div class="profile-image">
                                     <img src="images/faces/face10.jpg" alt="image" />
@@ -189,44 +187,32 @@
                                     </p>
                                 </div>
                             </div>
-                        </li>
-                        <li class="nav-item">
+                        </li> --}}
+                        <li class="nav-item" style="border-bottom: 1px solid gray;border-top: 1px solid gray;">
                             <a class="nav-link" href="{{ route('dashboard') }}">
                                 <i class="icon-rocket menu-icon"></i>
                                 <span class="menu-title">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" style="border-bottom: 1px solid gray;">
                             <a class="nav-link" href="{{ route('department.index') }}">
-                                <i class="icon-layers menu-icon"></i>
+                                <i class="icon-anchor menu-icon"></i>
                                 <span class="menu-title">Department</span>
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item" style="border-bottom: 1px solid gray;">
                             <a class="nav-link" href="{{ route('journal.index') }}">
                                 <i class="icon-layers menu-icon"></i>
                                 <span class="menu-title">Journal & Research Paper</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="collapse" href="#ui-advanced" aria-expanded="false"
-                                aria-controls="ui-advanced">
-                                <i class="icon-cup menu-icon"></i>
-                                <span class="menu-title">Advanced Elements</span>
-                                <span class="badge badge-primary">4</span>
+                        <li class="nav-item" style="border-bottom: 1px solid gray;">
+                            <a class="nav-link" href="{{ route('user.index') }}" >
+                                <i class="icon-user menu-icon"></i>
+                                <span class="menu-title">User</span>
                             </a>
-                            <div class="collapse" id="ui-advanced">
-                                <ul class="nav flex-column sub-menu">
-                                    <li class="nav-item"> <a class="nav-link"
-                                            href="pages/ui-features/dragula.html">Dragula</a></li>
-                                    <li class="nav-item"> <a class="nav-link"
-                                            href="pages/ui-features/clipboard.html">Clipboard</a></li>
-                                    <li class="nav-item"> <a class="nav-link"
-                                            href="pages/ui-features/context-menu.html">Context menu</a></li>
-                                </ul>
-                            </div>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
                                 aria-controls="form-elements">
                                 <i class="icon-flag menu-icon"></i>
@@ -324,7 +310,7 @@
                                 <i class="icon-picture menu-icon"></i>
                                 <span class="menu-title">Gallery</span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </nav>
                 <!-- partial -->
@@ -334,8 +320,8 @@
                     <!-- partial:partials/_footer.html -->
                     <footer class="footer">
                         <div class="container-fluid clearfix">
-                            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2017
-                                <a href="#">UrbanUI</a>. All rights reserved.</span>
+                            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © {{ date('Y') }}
+                                <a href="#">Ahsan</a>. All rights reserved.</span>
                             <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made
                                 with <i class="mdi mdi-heart text-danger"></i></span>
                         </div>
@@ -369,7 +355,11 @@
     <!-- endinject -->
     <!-- Custom js for this page-->
     <script src="js/dashboard.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <!-- End custom js for this page-->
+    @yield('footer_script')
 </body>
 
 </html>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\JournalController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,5 +36,12 @@ Route::resource('department', DepartmentController::class);
 Route::resource('journal', JournalController::class);
 Route::get('journal/assain/{journal_id}', [JournalController::class, 'assain'])->name('journal.assain');
 Route::get('journal/assain/search', [JournalController::class, 'add'])->name('journal.add');
+
+//User Controller
+
+Route::resource('user', UserController::class);
+Route::post('user/makeadmin/{user_id}', [UserController::class, 'makeadmin'])->name('user.admin');
+Route::post('user/maketecher/{user_id}', [UserController::class, 'maketeacher'])->name('user.teacher');
+Route::post('user/makestudent/{user_id}', [UserController::class, 'makestudent'])->name('user.student');
 
 
