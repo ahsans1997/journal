@@ -45,7 +45,7 @@
                                 @csrf
                                 <input type="hidden" value="{{ $journal_id }}" name="journal_id">
                                 <input type="hidden" value="{{ $search->id }}" name="user_id">
-                                <button type="submit" class="btn btn-success">Assain To Project</button>
+                                <button type="submit" class="btn btn-success">Assign To Project</button>
                             </form>
                         </td>
                     </tr>
@@ -65,15 +65,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($assained as $assain)
+            @foreach($assigned as $assign)
                 <tr>
-                    <td>{{ $assain->journal->journal_name }}</td>
-                    <td>{{ $assain->user->name }}</td>
-                    <td>{{ $assain->user->email }}</td>
+                    <td>{{ $assign->journal->journal_name }}</td>
+                    <td>{{ $assign->user->name }}</td>
+                    <td>{{ $assign->user->email }}</td>
                     <td>
-                        <form method="POST" action="{{ route('journal.delete', $assain->id) }}">
+                        <form method="POST" action="{{ route('journal.delete', $assign->id) }}">
                             @csrf
-                            <button type="submit" class="btn btn-danger">Delete To Project</button>
+                            <button type="submit" class="btn btn-danger">Remove User</button>
                         </form>
                     </td>
                 </tr>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AssainToJournal;
+use App\Models\AssignUser;
 use App\Models\Department;
 use App\Models\Journal;
 use Carbon\Carbon;
@@ -170,24 +170,24 @@ class JournalController extends Controller
         return back()->with('delete', 'Delete SuccessFully');
     }
 
-    public function assain(Request $request, $journal_id)
+    public function assign(Request $request, $journal_id)
     {
         $email = $request->search;
         if($email != ""){
-            return view('admin.journal.assain', [
+            return view('admin.journal.assign', [
                 'searchs' => User::where('email', 'LIKE', $email)->get(),
                 'journal_id' => $journal_id,
-                'assained' => AssainToJournal::with(['user', 'journal'])->where('journal_id', $journal_id)->get()
+                'assigned' => AssignUser::with(['user', 'journal'])->where('journal_id', $journal_id)->get()
             ]);
         }else{
-            return view('admin.journal.assain', [
-                'assained' => AssainToJournal::with(['user', 'journal'])->where('journal_id', $journal_id)->get(),
+            return view('admin.journal.assign', [
+                'assigned' => AssignUser::with(['user', 'journal'])->where('journal_id', $journal_id)->get(),
             ]);
         }
     }
     public function add(Request $request)
     {
-        AssainToJournal::insert([
+        AssignUser::insert([
             'journal_id' => $request->journal_id,
             'user_id' => $request->user_id,
             'created_at' => Carbon::now(),
@@ -196,7 +196,7 @@ class JournalController extends Controller
     }
     public function delete($id)
     {
-        AssainToJournal::findOrFail($id)->delete();
+        AssignUser::findOrFail($id)->delete();
         return back();
     }
 

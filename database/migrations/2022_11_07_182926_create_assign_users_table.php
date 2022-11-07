@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAssainToJournalsTable extends Migration
+class CreateAssignUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAssainToJournalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('assain_to_journals', function (Blueprint $table) {
+        Schema::create('assign_users', function (Blueprint $table) {
             $table->id();
             $table->integer('journal_id');
             $table->integer('user_id');
@@ -28,6 +28,6 @@ class CreateAssainToJournalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assain_to_journals');
+        Schema::dropIfExists('assign_users');
     }
 }

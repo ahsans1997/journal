@@ -42,7 +42,7 @@
                             <td class="text-center">
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     @if ($journal->user_id == Auth::id())
-                                    <a href="{{ route('journal.assain', $journal->id) }}" class="btn btn-success">Assain</a>
+                                    <a href="{{ route('journal.assign', $journal->id) }}" class="btn btn-success">Assign</a>
                                     @endif
                                     <a href="{{ route('journal.edit',$journal->id) }}" class="btn btn-info">Edit</a>
                                     <form method="POST" action="{{ route('journal.destroy', $journal->id) }}">
