@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
 
 class JournalController extends Controller
 {
@@ -168,17 +169,16 @@ class JournalController extends Controller
         return back()->with('delete', 'Delete SuccessFully');
     }
 
-    public function assain($journal_id)
+    public function assain(Request $request, $journal_id)
     {
-        return view('admin.journal.assain');
+        $email = $request->search;
+        if($email != ""){
+            return view('admin.journal.assain', [
+                'searchs' => User::where('email', 'LIKE', $email)->get(),
+            ]);
+        }else{
+            return view('admin.journal.assain');
+        }
     }
-    // public function add($journal_id)
-    // {
 
-    //     $user = QueryBuilder::for(User::class)
-    //         ->allowedFilters(['email'])
-    //         ->get();
-    //     print_r($user);
-    //     // return view('admin.journal.assain');
-    // }
 }
