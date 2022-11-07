@@ -35,7 +35,8 @@ Route::resource('department', DepartmentController::class);
 
 Route::resource('journal', JournalController::class);
 Route::get('journal/assain/{journal_id}', [JournalController::class, 'assain'])->name('journal.assain');
-Route::get('journal/assain/search', [JournalController::class, 'add'])->name('journal.add');
+Route::post('journal/assain/add', [JournalController::class, 'add'])->name('journal.add');
+Route::post('journal/assain/delete/{id}', [JournalController::class, 'delete'])->name('journal.delete');
 
 //User Controller
 
