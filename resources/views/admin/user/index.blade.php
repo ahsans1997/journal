@@ -34,15 +34,15 @@
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <form method="POST" action="{{ route('user.admin', $user->id) }}">
                                 @csrf
-                                <button type="submit" class="btn btn-success">Make Admin</button>
+                                <button type="submit" class="btn btn-success btn-sm">Make Admin</button>
                             </form>
                             <form method="POST" action="{{ route('user.teacher', $user->id) }}">
                                 @csrf
-                                <button type="submit" class="btn btn-info">Make Teacher</button>
+                                <button type="submit" class="btn btn-info btn-sm">Make Teacher</button>
                             </form>
                             <form method="POST" action="{{ route('user.student', $user->id) }}">
                                 @csrf
-                                <button type="submit" class="btn btn-warning">Make Student</button>
+                                <button type="submit" class="btn btn-warning btn-sm">Make Student</button>
                             </form>
                             <form method="POST" action="">
                                 @csrf

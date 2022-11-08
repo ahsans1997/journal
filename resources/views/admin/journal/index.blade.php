@@ -30,32 +30,39 @@
                 </thead>
                 <tbody>
                     @forelse ($journals as $journal)
-                        <tr>
-                            <td class="text-center">{{ $loop->index + 1 }}</td>
-                            <td class="text-center">{{ $journal->journal_name }}</td>
-                            <td class="text-center">{{ $journal->journal_description }}</td>
-                            <td class="text-center">{{ $journal->department->department_name }}</td>
-                            <td class="text-center">{{ $journal->user->name }}</td>
-                            <td class="text-center">{{ ($journal->approve == 1) ? "Not Approve" : "Approved" }}</td>
-                            <td class="text-center">{{ $journal->journal_image }}</td>
-                            <td class="text-center">{{ $journal->journal_file }}</td>
-                            <td class="text-center">
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    @if ($journal->user_id == Auth::id())
-                                    <a href="{{ route('journal.assign', $journal->id) }}" class="btn btn-success">Assign</a>
-                                    @endif
-                                    <a href="{{ route('journal.edit',$journal->id) }}" class="btn btn-info">Edit</a>
-                                    <form method="POST" action="{{ route('journal.destroy', $journal->id) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
+                        @if ($journal->user_id == Auth::id())
+                            <tr>
+                                <td class="text-center">{{ $loop->index + 1 }}</td>
+                                <td class="text-center">{{ $journal->journal_name }}</td>
+                                <td class="text-center">{{ $journal->journal_description }}</td>
+                                <td class="text-center">{{ $journal->department->department_name }}</td>
+                                <td class="text-center">{{ $journal->user->name }}</td>
+                                <td class="text-center">{{ ($journal->approve == 1) ? "Not Approve" : "Approved" }}</td>
+                                <td class="text-center">{{ $journal->journal_image }}</td>
+                                <td class="text-center">{{ $journal->journal_file }}</td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+
+                                        <a href="{{ route('journal.assign', $journal->id) }}" class="btn btn-success">Assign</a>
+
+                                        <a href="{{ route('journal.edit',$journal->id) }}" class="btn btn-info">Edit</a>
+                                        <form method="POST" action="{{ route('journal.destroy', $journal->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endif
                     @empty
 
                     @endforelse
+                    @if ($journal->user_id != Auth::id())
+                    <tr>
+                        <td class="text-danger text-center" colspan="50">NO DATA FOUND</td>
+                    </tr>
+                    @endif
 
                 </tbody>
             </table>
