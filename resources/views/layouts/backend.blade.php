@@ -36,6 +36,7 @@
                 </button>
                 <ul class="navbar-nav">
                     @yield('journal')
+                    @yield('user')
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
                     <li>

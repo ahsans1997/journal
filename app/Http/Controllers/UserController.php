@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -31,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.create');
     }
 
     /**
@@ -42,7 +44,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'name' =>'required',
+            'email' => 'required|unique:users,email',
+            'password' => 'required',
+        ]);
+
+        User::insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 1,
+            'created_at' => Carbon::now(),
+        ]);
+        return redirect()->route('user.index')->with('success', 'Admin Create Successfull.');
     }
 
     /**
@@ -101,36 +116,18 @@ class UserController extends Controller
     }
     public function maketeacher($user_id)
     {
-        $flag = "";
-        foreach(User::all() as $user){
-            if($user->role == 1){
-                $flag ++;
-            }
-        }
-        if($flag > 1){
+        // $admin = User::where('role', 1)->count();
             User::findOrFail($user_id)->update([
                 'role' => 2
             ]);
             return back()->with('success', 'New Admin create successfull');
-        }else{
-            return back()->with('danger', 'You are the last Admin');
-        }
     }
     public function makestudent($user_id)
     {
-        $flag = "";
-        foreach(User::all() as $user){
-            if($user->role == 1){
-                $flag ++;
-            }
-        }
-        if($flag > 1){
+        // $admin = User::where('role', 1)->count();
             User::findOrFail($user_id)->update([
                 'role' => 3
             ]);
             return back()->with('success', 'New Admin create successfull');
-        }else{
-            return back()->with('danger', 'You are the last Admin');
-        }
     }
 }

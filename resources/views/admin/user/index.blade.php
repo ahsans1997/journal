@@ -1,8 +1,19 @@
 @extends('layouts.backend')
 
+@section('user')
+<li class="nav-item dropdown d-none d-lg-flex">
+    <a class="nav-link dropdown-toggle nav-btn" id="actionDropdown" href="{{ Route('user.create') }}">
+        <span class="btn">+ Create new</span>
+    </a>
+</li>
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-md-10 m-auto">
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
         <table id="usertable" class="table table-striped">
             <thead>
                 <tr>
@@ -31,10 +42,13 @@
                         @endif
                     </td>
                     <td class="text-center">
+                        @if (Auth::id() != $user->id)
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <form method="POST" action="{{ route('user.admin', $user->id) }}">
                                 @csrf
+
                                 <button type="submit" class="btn btn-success btn-sm">Make Admin</button>
+
                             </form>
                             <form method="POST" action="{{ route('user.teacher', $user->id) }}">
                                 @csrf
@@ -42,7 +56,9 @@
                             </form>
                             <form method="POST" action="{{ route('user.student', $user->id) }}">
                                 @csrf
+                                @if ($user->role != 2)
                                 <button type="submit" class="btn btn-warning btn-sm">Make Student</button>
+                                @endif
                             </form>
                             <form method="POST" action="">
                                 @csrf
@@ -50,6 +66,7 @@
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         </div>
+                        @endif
                     </td>
                 </tr>
                 @endforeach
