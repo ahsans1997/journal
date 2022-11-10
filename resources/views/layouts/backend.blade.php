@@ -34,10 +34,12 @@
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="icon-menu"></span>
                 </button>
+                @if (Auth::id())
                 <ul class="navbar-nav">
                     @yield('journal')
                     @yield('user')
                 </ul>
+                @endif
                 <ul class="navbar-nav navbar-nav-right">
                     <li>
                         <form method="POST" action="{{ route('logout') }}" x-data>
@@ -195,24 +197,28 @@
                                 <span class="menu-title">Dashboard</span>
                             </a>
                         </li>
+                        @if (Auth::user()->role == 1 || Auth::user()->role == 5)
                         <li class="nav-item" style="border-bottom: 1px solid gray;">
                             <a class="nav-link" href="{{ route('department.index') }}">
                                 <i class="icon-anchor menu-icon"></i>
                                 <span class="menu-title">Department</span>
                             </a>
                         </li>
+                        @endif
                         <li class="nav-item" style="border-bottom: 1px solid gray;">
                             <a class="nav-link" href="{{ route('journal.index') }}">
                                 <i class="icon-layers menu-icon"></i>
                                 <span class="menu-title">Journal & Research Paper</span>
                             </a>
                         </li>
+                        @if (Auth::user()->role == 1 || Auth::user()->role == 5)
                         <li class="nav-item" style="border-bottom: 1px solid gray;">
                             <a class="nav-link" href="{{ route('user.index') }}" >
                                 <i class="icon-user menu-icon"></i>
                                 <span class="menu-title">User</span>
                             </a>
                         </li>
+                        @endif
                         {{-- <li class="nav-item">
                             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
                                 aria-controls="form-elements">
