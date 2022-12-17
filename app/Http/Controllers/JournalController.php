@@ -192,7 +192,7 @@ class JournalController extends Controller
             'user_id' => $request->user_id,
             'created_at' => Carbon::now(),
         ]);
-        return back();
+        return redirect()->route('journal.index');
     }
     public function delete($id)
     {

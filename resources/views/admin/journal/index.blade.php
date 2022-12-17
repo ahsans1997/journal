@@ -22,7 +22,7 @@
                         <th class="text-center">Description</th>
                         <th class="text-center">Department Name</th>
                         <th class="text-center">Submited By</th>
-                        <th class="text-center">Approval</th>
+                        {{-- <th class="text-center">Approval</th> --}}
                         <th class="text-center">Image</th>
                         <th class="text-center">File</th>
                         <th class="text-center">Action</th>
@@ -37,7 +37,7 @@
                                 <td class="text-center">{{ $journal->journal_description }}</td>
                                 <td class="text-center">{{ $journal->department->department_name }}</td>
                                 <td class="text-center">{{ $journal->user->name }}</td>
-                                <td class="text-center">{{ ($journal->approve == 1) ? "Not Approve" : "Approved" }}</td>
+                                {{-- <td class="text-center">{{ ($journal->approve == 1) ? "Not Approve" : "Approved" }}</td> --}}
                                 <td class="text-center">{{ $journal->journal_image }}</td>
                                 <td class="text-center">{{ $journal->journal_file }}</td>
                                 <td class="text-center">
@@ -55,14 +55,16 @@
                                 </td>
                             </tr>
                         @endif
+                        @if ($journal->user_id != Auth::id())
+                            <tr>
+                                <td class="text-danger text-center" colspan="50">NO DATA FOUND</td>
+                            </tr>
+                        @endif
                     @empty
-
+                        <tr>
+                            <td class="text-danger text-center" colspan="50">NO DATA FOUND</td>
+                        </tr>
                     @endforelse
-                    @if ($journal->user_id != Auth::id())
-                    <tr>
-                        <td class="text-danger text-center" colspan="50">NO DATA FOUND</td>
-                    </tr>
-                    @endif
 
                 </tbody>
             </table>

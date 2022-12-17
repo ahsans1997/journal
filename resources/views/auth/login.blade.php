@@ -63,6 +63,9 @@
                         <div class="mt-3 text-center">
                           <a href="#" class="auth-link text-black">Forgot password?</a>
                         </div>
+                        <div class="mt-3 text-center">
+                          <a href="{{ route('register') }}" class="auth-link text-black">Create New Account</a>
+                        </div>
                     </form>
                   </div>
                 </div>
